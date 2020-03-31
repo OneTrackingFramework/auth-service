@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   public BasicAuthenticationFilter basicAuthenticationFilter() throws Exception {
     final BasicAuthenticationFilter filter = new BasicAuthenticationFilter(authenticationManager(), this.jwtHelper);
-    filter.setFilterProcessesUrl("/users/login");
+    filter.setFilterProcessesUrl("/login");
     return filter;
   }
 
