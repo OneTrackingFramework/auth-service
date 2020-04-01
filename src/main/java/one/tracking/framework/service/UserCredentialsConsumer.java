@@ -37,7 +37,8 @@ public class UserCredentialsConsumer {
     final String payload = this.jwtHelper.decodeJWE(this.jweEncodedSecret, event);
     final UserCredentials userCredentials = this.mapper.readValue(payload, UserCredentials.class);
 
-    final Optional<UserData> userDataOp = this.repository.findByUserId(userCredentials.getUserId());
+    final Optional<UserData> userDataOp =
+        this.repository.findByUserIdOrEmail(userCredentials.getUserId(), userCredentials.getEmail());
 
     if (userDataOp.isEmpty()) {
 
@@ -52,6 +53,7 @@ public class UserCredentialsConsumer {
       final UserData userData = userDataOp.get();
       userData.setEmail(userCredentials.getEmail());
       userData.setEncryptedPassword(userCredentials.getEncrytedPassword());
+      userData.setUserId(userCredentials.getUserId());
       this.repository.save(userData);
     }
   }

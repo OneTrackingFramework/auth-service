@@ -39,7 +39,7 @@ public class UserData {
   @Column(length = 32, nullable = false, unique = true)
   private String userId;
 
-  @Column(length = 256, nullable = false)
+  @Column(length = 256, nullable = false, unique = true)
   private String email;
 
   @Column(length = 256, nullable = false)

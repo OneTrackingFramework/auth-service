@@ -15,7 +15,7 @@ public interface UserDataRepository extends CrudRepository<UserData, String> {
 
   Optional<UserData> findByEmail(String email);
 
-  Optional<UserData> findByUserId(String id);
+  Optional<UserData> findByUserIdOrEmail(String id, String email);
 
   boolean existsByEmail(String email);
 
